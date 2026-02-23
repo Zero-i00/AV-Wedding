@@ -1,14 +1,6 @@
 @import "tailwindcss";
+@import "./styles/index.css";
 
-:root {
-}
-
-@theme inline {
-
-}
-
-@media (prefers-color-scheme: dark) {
-}
 
 * {
   margin: 0;
@@ -16,6 +8,3 @@
   box-sizing: border-box;
 }
 
-body {
-
-}

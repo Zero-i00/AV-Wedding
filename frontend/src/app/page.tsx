@@ -1,9 +1,9 @@
-import Image from "next/image";
+import {HeroSection} from "@/features/core/components/sections/hero";
 
 export default function Home() {
   return (
     <div>
-      Home
+      <HeroSection />
     </div>
   );
 }
