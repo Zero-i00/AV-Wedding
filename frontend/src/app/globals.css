@@ -1,10 +1,31 @@
 @import "tailwindcss";
 @import "./styles/index.css";
 
-
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
+body {
+  overflow: hidden;
+  background: var(--color-white);
+}
+
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@layer base {
+  .container-x {
+    padding: 0 6rem;
+  }
+
+  .container-y {
+    padding: 7rem 0;
+  }
+
+  .container-section {
+    padding: 7rem 6rem;
+  }
+}

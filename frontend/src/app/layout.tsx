@@ -6,7 +6,7 @@ import {SITE_NAME} from "@/shared/constants/seo.constants";
 import {Montserrat} from "next/font/google";
 
 const montserrat = Montserrat({
-    weight: '400',
+    weight: '300',
     variable: "--font-montserrat",
     subsets: ['latin'],
     style: ['normal']
