@@ -53,7 +53,7 @@
     width: 18px;
     height: 18px;
     border: 2px solid var(--checkbox-border-color, var(--color-primary-400));
-    border-radius: var(--rounded-xs);
+    border-radius: var(--rounded-sm);
     background-color: var(--checkbox-bg-color, transparent);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     flex-shrink: 0;
@@ -184,8 +184,8 @@
 
 /* Small */
 .checkbox--sm {
-    width: 14px;
-    height: 14px;
+    width: 22px;
+    height: 22px;
     border-width: 2px;
 }
 
@@ -210,8 +210,8 @@
 
 /* Medium (значения по умолчанию) */
 .checkbox--md {
-    width: 18px;
-    height: 18px;
+    width: 26px;
+    height: 26px;
     border-width: 2px;
 }
 
@@ -235,8 +235,8 @@
 
 /* Large */
 .checkbox--lg {
-    width: 22px;
-    height: 22px;
+    width: 30px;
+    height: 30px;
     border-width: 3px;
 }
 
@@ -258,8 +258,8 @@
 
 /* Extra Large */
 .checkbox--xl {
-    width: 26px;
-    height: 26px;
+    width: 34px;
+    height: 34px;
     border-width: 3px;
 }
 

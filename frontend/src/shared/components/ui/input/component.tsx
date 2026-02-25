@@ -40,6 +40,7 @@ function InputInner(
         type,
         hint,
         error,
+        label,
         success,
         container,
         className,
@@ -54,10 +55,12 @@ function InputInner(
     }: InputProps,
     ref: Ref<HTMLInputElement>
 ) {
-    const label = required ? `${placeholder} *` : placeholder
 
     return (
         <div {...container} className={cn(styles.container, container?.className)}>
+            {label && (
+                <p className={styles.input__label}>{label}</p>
+            )}
             <div
                 className={cn(
                     styles.input__wrapper,
@@ -73,13 +76,13 @@ function InputInner(
                     type={type}
                     aria-label={label}
                     required={required}
-                    placeholder={label}
                     aria-invalid={!!error}
                     aria-describedby={hint}
                     aria-disabled={disabled}
                     disabled={disabled || isLoading}
                     data-success={!!success}
                     className={cn(styles.input, className)}
+                    placeholder={required ? `${placeholder} *` : placeholder}
                     {...rest}
                 />
                 {isLoading && <Loader size={'sm'} />}

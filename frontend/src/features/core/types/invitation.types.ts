@@ -1,5 +1,5 @@
-import {TypeGuestResponse} from "@/features/core/types/guest.types";
-import {TypeAlcoholResponse} from "@/features/core/types/alcohol.types";
+import type {TypeGuestResponse} from "@/features/core/types/guest.types";
+import type {TypeAlcoholResponse} from "@/features/core/types/alcohol.types";
 
 
 export type TypeInvitationRequest = {

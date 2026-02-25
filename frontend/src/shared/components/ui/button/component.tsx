@@ -37,6 +37,7 @@ export function Button({
    onClick,
    size = 'md',
    type = 'button',
+   variant = 'default',
    appearance = 'primary',
    disabled = false,
    isLoading = false,
@@ -58,7 +59,7 @@ export function Button({
             className={cn(
                 styles.btn,
                 styles[`btn--${size}`],
-                styles[`btn--default`],
+                styles[`btn--${variant}`],
                 styles[`btn--${appearance}`],
                 className
             )}

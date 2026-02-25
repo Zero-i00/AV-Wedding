@@ -12,6 +12,12 @@ export interface InputProps extends InputElement {
      * @default 'sm'
      */
     size?: TypeBaseSize
+
+    /**
+     * Подсказка под полем ввода
+     */
+    label?: string
+
     /**
      * Подсказка под полем ввода
      */

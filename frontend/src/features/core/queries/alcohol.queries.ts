@@ -5,7 +5,7 @@ import {alcoholService} from "@/features/core/services/alcohol.service";
 class AlcoholQueries {
     public BASE_KEY = 'alcohol_category'
 
-    async list() {
+    list() {
         return queryOptions({
             queryKey: [this.BASE_KEY],
             queryFn: () => alcoholService.list(),

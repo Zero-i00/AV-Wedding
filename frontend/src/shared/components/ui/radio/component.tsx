@@ -85,10 +85,9 @@ function RadioInner(
                             error && styles['radio--error']
                         )}
                     >
-						{isChecked && <span className={styles.dot} />}
 					</span>
 				</span>
-                {label && <span className={styles.labelText}>{label}</span>}
+                {label && <span className={styles['label-text']}>{label}</span>}
             </label>
             {hint && (
                 <span className={cn(styles.hint, error && styles['hint--error'])}>

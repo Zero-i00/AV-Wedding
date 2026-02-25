@@ -102,6 +102,22 @@
     background-color: var(--btn-hover);
 }
 
+.btn--icon {
+    color: var(--btn-bg);
+    border-color: transparent;
+    background-color: transparent;
+    aspect-ratio: 1;
+    width: var(--btn-icon-size);
+    height: var(--btn-icon-size);
+    padding: 0;
+
+    --btn-loader: var(--btn-bg);
+}
+
+.btn--icon:hover:not(:disabled) {
+    background-color: var(--btn-opacity-hover);
+}
+
 /* Размеры */
 .btn--sm {
     padding: 8px 14px;

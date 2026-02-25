@@ -1,6 +1,7 @@
 import type {ComponentProps} from 'react'
 import type {TypeBaseAppearance, TypeBaseSize} from "@/shared/types/appearance.types";
 
+type ButtonVariant = 'default' | 'icon'
 
 export interface ButtonProps extends ComponentProps<'button'> {
     /**
@@ -12,6 +13,16 @@ export interface ButtonProps extends ComponentProps<'button'> {
      * @default false
      */
     isLoading?: boolean
+
+    /**
+     * Вариант стиля кнопки
+     *
+     * @remarks
+     * Определяет визуальное оформление кнопки (заливка, контур, текст и т.д.)
+     *
+     * @default 'default'
+     */
+    variant?: ButtonVariant
 
     /**
      * Размер кнопки
