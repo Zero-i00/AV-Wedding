@@ -42,6 +42,7 @@ export function InvitationSection({
         reset,
         watch,
         control,
+        setValue,
         handleSubmit,
     } = useForm<FormData>({
         mode: 'onSubmit',
@@ -52,15 +53,27 @@ export function InvitationSection({
             invitation: {
                 will_attend: true,
                 is_single_visit: false,
+                favorite_music: '',
             },
             alcohol_categories: []
         }
     })
 
     const {fields, append, remove} = useFieldArray({
-        control: control,
+        control,
         name: 'guests'
     })
+
+    const alcoholValues = watch('alcohol_categories')
+    const guests = watch('guests')
+    const isSingleVisit = watch('invitation.is_single_visit')
+
+    const toggleAlcohol = (categoryId: number) => {
+        const next = alcoholValues.includes(categoryId)
+            ? alcoholValues.filter(c => c !== categoryId)
+            : [...alcoholValues, categoryId]
+        setValue('alcohol_categories', next)
+    }
 
     const submit = (data: FormData) => {
         mutate(data, {
@@ -92,9 +105,7 @@ export function InvitationSection({
             >
                 <Controller
                     control={control}
-                    rules={{
-                        required: REQUIRED_INPUT_ERROR
-                    }}
+                    rules={{required: REQUIRED_INPUT_ERROR}}
                     name={'guests.0.full_name'}
                     render={({field, fieldState: {error}}) => (
                         <Input
@@ -145,39 +156,35 @@ export function InvitationSection({
                     <div className={`flex flex-row justify-start items-center gap-2`}>
                         <Button
                             size={'sm'}
-                            disabled={watch('invitation.is_single_visit')}
+                            disabled={isSingleVisit}
                             className={`aspect-square! p-1! bg-white! border-[2px]!`}
-                            onClick={() => append({
-                                full_name: ''
-                            })}
+                            onClick={() => append({full_name: ''})}
                         >
                             <Plus size={ICON_SIZE.SM} color={'var(--color-primary-500)'} />
                         </Button>
                         <Typography variant={'subtitle-1'}>
-                            Да (вторая половника / ребёнок)
+                            Да (вторая половина / ребёнок)
                         </Typography>
                     </div>
                     {fields.slice(1).map((field, index) => (
                         <Controller
                             key={field.id}
-                            rules={{
-                                required: REQUIRED_INPUT_ERROR
-                            }}
+                            rules={{required: REQUIRED_INPUT_ERROR}}
                             name={`guests.${index + 1}.full_name`}
                             control={control}
                             render={({field, fieldState: {error}}) => (
-                              <div className={`w-full flex flex-row justify-start items-center gap-2`}>
-                                  <Button variant={'icon'} onClick={() => remove(index)}>
-                                      <Trash size={ICON_SIZE.SM} color={'var(--color-gray-500)'}/>
-                                  </Button>
-                                  <Input
-                                      required
-                                      placeholder={'ФИО'}
-                                      value={field.value}
-                                      error={error?.message}
-                                      onChange={(event) => field.onChange(event.target.value)}
-                                  />
-                              </div>
+                                <div className={`w-full flex flex-row justify-start items-center gap-2`}>
+                                    <Button variant={'icon'} onClick={() => remove(index)}>
+                                        <Trash size={ICON_SIZE.SM} color={'var(--color-gray-500)'}/>
+                                    </Button>
+                                    <Input
+                                        required
+                                        placeholder={'ФИО'}
+                                        value={field.value}
+                                        error={error?.message}
+                                        onChange={(event) => field.onChange(event.target.value)}
+                                    />
+                                </div>
                             )}
                         />
                     ))}
@@ -193,7 +200,7 @@ export function InvitationSection({
                                 error={!!error?.message}
                                 isChecked={Boolean(field.value)}
                                 onClick={() => field.onChange(!field.value)}
-                                disabled={watch('guests').length > 1}
+                                disabled={guests.length > 1}
                             />
                         )}
                     />
@@ -202,38 +209,19 @@ export function InvitationSection({
                     <Typography variant={'subtitle-1'} className={`my-2!`}>
                         Уточните Ваши предпочтения в алкоголе:
                     </Typography>
-                    {alcoholCategories.length === 0 && (
+                    {alcoholCategories.length === 0 ? (
                         <Typography variant={'subtitle-1'}>
                             Пока нет категорий на выбор
                         </Typography>
-                    )}
-                    {alcoholCategories.length > 0 && (
+                    ) : (
                         <div className={`grid grid-cols-2 grid-rows-4 gap-2`}>
                             {alcoholCategories.map(category => (
-                                <Controller
+                                <Checkbox
                                     key={category.id}
-                                    name={`alcohol_categories.${category.id}`}
-                                    control={control}
-                                    render={({field, fieldState: {error}}) => (
-                                        <Checkbox
-                                            size={'md'}
-                                            label={category.title}
-                                            hint={error?.message}
-                                            error={!!error?.message}
-                                            isChecked={watch('alcohol_categories').includes(category.id)}
-                                            onClick={() => field.onChange(() => {
-                                                const action = Boolean(field.value) ? 'append' : 'remove'
-                                                console.log(action)
-
-                                                switch (action) {
-                                                    case "append":
-                                                        return [...watch('alcohol_categories'), category.id]
-                                                    case "remove":
-                                                        return watch('alcohol_categories').filter(c => c !== category.id)
-                                                }
-                                            })}
-                                        />
-                                    )}
+                                    size={'md'}
+                                    label={category.title}
+                                    isChecked={alcoholValues.includes(category.id)}
+                                    onClick={() => toggleAlcohol(category.id)}
                                 />
                             ))}
                         </div>
