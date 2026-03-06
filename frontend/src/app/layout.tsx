@@ -4,6 +4,7 @@ import type {PropsWithChildren} from "react";
 import {Providers} from "@/app/providers";
 import {SITE_NAME} from "@/shared/constants/seo.constants";
 import {Montserrat} from "next/font/google";
+import {Footer} from "@/shared/components/layout/footer";
 
 const montserrat = Montserrat({
     weight: '300',
@@ -26,6 +27,7 @@ export default function RootLayout({children}: PropsWithChildren) {
       <body className={`${montserrat.variable}`}>
           <Providers>
               {children}
+              <Footer />
           </Providers>
       </body>
     </html>
