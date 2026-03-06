@@ -92,8 +92,8 @@ export function InvitationSection({
     return (
         <section id={id} className={twMerge(`container-section flex flex-col`, className)} {...rest}>
             <Image
-                width={300}
-                height={60}
+                width={420}
+                height={80}
                 alt={'Анкета'}
                 aria-label={'Анкета'}
                 src={'/invitation/heading.webp'}

@@ -12,8 +12,8 @@ export function PlaceSection({
     return (
         <section id={id} className={twMerge(`container-section flex flex-col justify-between items-start gap-4`, className)} {...rest}>
             <Image
-                width={420}
-                height={80}
+                width={680}
+                height={200}
                 alt={'Место проведения'}
                 aria-label={'Место проведения'}
                 src={'/place/heading.webp'}

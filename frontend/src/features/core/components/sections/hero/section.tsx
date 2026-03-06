@@ -11,16 +11,17 @@ function VarvaraLine({className, ...rest}: ComponentProps<'div'>) {
     return (
         <div className={twMerge(`w-full flex flex-row items-end`, className)} {...rest}>
             <Image
+                priority
                 width={0}
                 height={0}
                 sizes={'100vw'}
                 alt={'Варвара'}
                 aria-label={'Варвара'}
                 src={'/hero/varvara-heading.webp'}
-                className={`w-[30%] shrink-0`}
+                className={`w-[30%] shrink-0 mb-5.5`}
             />
             <svg
-                viewBox="0 0 1097 144"
+                viewBox="0 0 1097 164"
                 fill="none"
                 className="flex-1 h-auto"
 
@@ -34,7 +35,7 @@ function VarvaraLine({className, ...rest}: ComponentProps<'div'>) {
                     pathLength="1"
                     style={{
                         strokeDasharray: 1,
-                        strokeDashoffset: 1,
+                        strokeDashoffset: -1,
                         animation: 'draw-line 2s ease forwards',
                     }}
                     className={`translate-y-9.5`}
@@ -68,6 +69,7 @@ function ArtemLine({className, ...rest}: ComponentProps<'div'>) {
                 />
             </svg>
             <Image
+                priority
                 width={0}
                 height={0}
                 alt={'Артём'}
