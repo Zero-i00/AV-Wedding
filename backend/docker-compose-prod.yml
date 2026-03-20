@@ -6,7 +6,7 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
     env_file:
-      - .env.prod
+      - .env
     networks:
       - app-network
     healthcheck:
@@ -22,7 +22,7 @@ services:
       dockerfile: docker/prod/Dockerfile
     restart: unless-stopped
     env_file:
-      - .env.prod
+      - .env
     depends_on:
       db:
         condition: service_healthy

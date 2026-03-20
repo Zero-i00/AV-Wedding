@@ -1,0 +1,45 @@
+name: Deploy Production
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate backend .env
+        run: ./scripts/generate-env.sh BACKEND backend/.env.example
+        env:
+          BACKEND_APP_MODE: ${{ vars.BACKEND_APP_MODE }}
+          BACKEND_APP_ALLOWED_HOSTS: ${{ vars.BACKEND_APP_ALLOWED_HOSTS }}
+          BACKEND_POSTGRES_DB: ${{ vars.BACKEND_POSTGRES_DB }}
+          BACKEND_POSTGRES_USER: ${{ secrets.BACKEND_POSTGRES_USER }}
+          BACKEND_POSTGRES_PASSWORD: ${{ secrets.BACKEND_POSTGRES_PASSWORD }}
+
+      - name: Generate frontend .env
+        run: ./scripts/generate-env.sh FRONTEND frontend/.env.example
+        env:
+          FRONTEND_NEXT_PUBLIC_SERVER_URL: ${{ vars.FRONTEND_NEXT_PUBLIC_SERVER_URL }}
+
+      - name: Copy files to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          source: "."
+          target: /opt/wedding
+
+      - name: Deploy on server
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd /opt/wedding
+            docker compose -f docker-compose-prod.yml up -d --build
+            docker system prune -f

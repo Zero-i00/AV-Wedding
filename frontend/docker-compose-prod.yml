@@ -6,7 +6,7 @@ services:
       dockerfile: docker/prod/Dockerfile
     restart: unless-stopped
     env_file:
-      - .env.prod
+      - .env
     networks:
       - app-network
 
