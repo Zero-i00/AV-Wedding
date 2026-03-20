@@ -31,7 +31,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           source: "."
-          target: /opt/wedding
+          target: ~/wedding
 
       - name: Deploy on server
         uses: appleboy/ssh-action@v1
@@ -40,6 +40,6 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            cd /opt/wedding
+            cd ~/wedding
             docker compose -f docker-compose-prod.yml up -d --build
             docker system prune -f
