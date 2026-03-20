@@ -1,8 +1,17 @@
+'use client'
+
 import type {ComponentProps} from "react";
 import {twMerge} from "tailwind-merge";
 import {Typography} from "@/shared/components/ui/typography";
 import Image from "next/image";
 import {SECTION_CONFIG} from "@/shared/configs/pages/section.config";
+import {m, useReducedMotion} from "framer-motion";
+import {
+    BASE_TRANSITION,
+    fadeUp,
+    heroStaggerContainer,
+    scaleReveal,
+} from "@/shared/constants/animation.constants";
 
 
 const VARVARA_LINE_PATH = "M1097 92.9266C906.67 71.4517 687.076 147.514 657.121 116.611C619.675 77.9824 709.671 -39.9098 730.188 15.8004C748.778 66.2743 613.694 103.09 549.453 92.9259C456.888 78.2809 425.131 -4.25839 302.704 15.8028C180.279 35.8641 137.35 104.95 0.00390625 104.394"
@@ -107,24 +116,39 @@ export function HeroSectionView({
     id = SECTION_CONFIG.HERO,
     ...rest
 }: ComponentProps<'section'>) {
+    const shouldReduceMotion = useReducedMotion()
+
     return (
         <section id={id} className={twMerge(`container-section h-dvh flex flex-col justify-center`, className)} {...rest}>
             <VarvaraLine className={`justify-start`} />
-            <div className={`flex flex-col justify-center items-center gap-12`}>
-                <Image
-                    width={90}
-                    height={90}
-                    alt={'Кольца'}
-                    src={'/hero/rings.webp'}
-                />
-                <Typography variant={'h5'} style={{fontWeight: 300, textAlign: 'center'}}>
-                    приглашаем на свадьбу
-                </Typography>
-                <Heading />
-                <Typography variant={'h3'} style={{fontWeight: 300}}>
-                    28/08/2026
-                </Typography>
-            </div>
+            <m.div
+                className={`flex flex-col justify-center items-center gap-12`}
+                variants={heroStaggerContainer}
+                initial={shouldReduceMotion ? 'visible' : 'hidden'}
+                animate="visible"
+            >
+                <m.div variants={scaleReveal} transition={{...BASE_TRANSITION, duration: 1.0}}>
+                    <Image
+                        width={90}
+                        height={90}
+                        alt={'Кольца'}
+                        src={'/hero/rings.webp'}
+                    />
+                </m.div>
+                <m.div variants={fadeUp} transition={BASE_TRANSITION}>
+                    <Typography variant={'h5'} style={{fontWeight: 300, textAlign: 'center'}}>
+                        приглашаем на свадьбу
+                    </Typography>
+                </m.div>
+                <m.div variants={fadeUp} transition={BASE_TRANSITION}>
+                    <Heading />
+                </m.div>
+                <m.div variants={fadeUp} transition={BASE_TRANSITION}>
+                    <Typography variant={'h3'} style={{fontWeight: 300}}>
+                        28/08/2026
+                    </Typography>
+                </m.div>
+            </m.div>
             <ArtemLine className={`justify-end`} />
         </section>
     )

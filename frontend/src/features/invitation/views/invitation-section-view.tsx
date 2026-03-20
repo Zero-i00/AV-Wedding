@@ -20,6 +20,13 @@ import {Plus, Trash} from "lucide-react";
 import {ICON_SIZE} from "@/shared/constants/styles.constants";
 import {alcoholQueries} from "@/features/invitation/queries/alcohol.queries";
 import {SECTION_CONFIG} from "@/shared/configs/pages/section.config";
+import {m} from "framer-motion";
+import {
+    BASE_TRANSITION,
+    fadeUp,
+    slideFromRight,
+    VIEWPORT_ONCE,
+} from "@/shared/constants/animation.constants";
 
 
 type FormData = {
@@ -92,16 +99,29 @@ export function InvitationSectionView({
 
     return (
         <section id={id} className={twMerge(`container-section flex flex-col`, className)} {...rest}>
-            <Image
-                width={420}
-                height={80}
-                alt={'Анкета'}
-                src={'/invitation/heading.webp'}
+            <m.div
                 className={`self-end`}
-            />
-            <form
+                variants={slideFromRight}
+                initial="hidden"
+                whileInView="visible"
+                viewport={VIEWPORT_ONCE}
+                transition={BASE_TRANSITION}
+            >
+                <Image
+                    width={420}
+                    height={80}
+                    alt={'Анкета'}
+                    src={'/invitation/heading.webp'}
+                />
+            </m.div>
+            <m.form
                 onSubmit={handleSubmit(submit)}
                 className={`self-center flex flex-col gap-4 min-w-1/3`}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={VIEWPORT_ONCE}
+                transition={{...BASE_TRANSITION, delay: 0.2}}
             >
                 <Controller
                     control={control}
@@ -248,7 +268,7 @@ export function InvitationSectionView({
                 >
                     Отправить!
                 </Button>
-            </form>
+            </m.form>
         </section>
     )
 }

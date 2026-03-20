@@ -3,6 +3,7 @@
 import type {PropsWithChildren} from "react";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {Toaster} from "react-hot-toast";
+import {MotionProvider} from "@/app/providers/motion";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -14,11 +15,13 @@ const queryClient = new QueryClient({
 
 export function Providers({children}: PropsWithChildren) {
     return (
-        <QueryClientProvider client={queryClient}>
-            {children}
-            <Toaster
-                position={'top-center'}
-            />
-        </QueryClientProvider>
+        <MotionProvider>
+            <QueryClientProvider client={queryClient}>
+                {children}
+                <Toaster
+                    position={'top-center'}
+                />
+            </QueryClientProvider>
+        </MotionProvider>
     )
 }
