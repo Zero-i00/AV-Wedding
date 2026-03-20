@@ -1,10 +1,11 @@
 import type {ComponentProps} from "react";
 import {twMerge} from "tailwind-merge";
+import {SECTION_CONFIG} from "@/shared/configs/pages/section.config";
 
 
 export function AboutSectionView({
     className,
-    id = 'about-section',
+    id = SECTION_CONFIG.ABOUT,
     ...rest
 }: ComponentProps<'section'>) {
     return (

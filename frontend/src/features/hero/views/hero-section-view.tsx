@@ -2,6 +2,7 @@ import type {ComponentProps} from "react";
 import {twMerge} from "tailwind-merge";
 import {Typography} from "@/shared/components/ui/typography";
 import Image from "next/image";
+import {SECTION_CONFIG} from "@/shared/configs/pages/section.config";
 
 
 const VARVARA_LINE_PATH = "M1097 92.9266C906.67 71.4517 687.076 147.514 657.121 116.611C619.675 77.9824 709.671 -39.9098 730.188 15.8004C748.778 66.2743 613.694 103.09 549.453 92.9259C456.888 78.2809 425.131 -4.25839 302.704 15.8028C180.279 35.8641 137.35 104.95 0.00390625 104.394"
@@ -16,7 +17,6 @@ function VarvaraLine({className, ...rest}: ComponentProps<'div'>) {
                 height={0}
                 sizes={'100vw'}
                 alt={'Варвара'}
-                aria-label={'Варвара'}
                 src={'/hero/varvara-heading.webp'}
                 className={`w-[30%] shrink-0 mb-5.5`}
             />
@@ -24,10 +24,9 @@ function VarvaraLine({className, ...rest}: ComponentProps<'div'>) {
                 viewBox="0 0 1097 164"
                 fill="none"
                 className="flex-1 h-auto"
-
+                aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
             >
-                <title id="artem-line-title">Декоративная линия</title>
                 <path
                     d={VARVARA_LINE_PATH}
                     stroke="black"
@@ -53,9 +52,9 @@ function ArtemLine({className, ...rest}: ComponentProps<'div'>) {
                 viewBox="0 0 1264 136"
                 fill="none"
                 className="flex-1 h-auto"
+                aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
             >
-                <title id="artem-line-title">Декоративная линия</title>
                 <path
                     d={ARTEM_LINE_PATH}
                     stroke="black"
@@ -74,7 +73,6 @@ function ArtemLine({className, ...rest}: ComponentProps<'div'>) {
                 height={0}
                 alt={'Артём'}
                 sizes={'100vw'}
-                aria-label={'Артём'}
                 src={'/hero/artem-heading.webp'}
                 className={`w-[23%] shrink-0`}
             />
@@ -89,7 +87,6 @@ function Heading({className, ...rest}: ComponentProps<'div'>) {
                 width={260}
                 height={60}
                 alt={'Артём'}
-                aria-label={'Артём'}
                 src={'/hero/artem-heading.webp'}
             />
             <Typography variant={'h1'} style={{fontWeight: 200}}>
@@ -99,7 +96,6 @@ function Heading({className, ...rest}: ComponentProps<'div'>) {
                 width={340}
                 height={60}
                 alt={'Варвара'}
-                aria-label={'Варвара'}
                 src={'/hero/varvara-heading.webp'}
             />
         </div>
@@ -108,7 +104,7 @@ function Heading({className, ...rest}: ComponentProps<'div'>) {
 
 export function HeroSectionView({
     className,
-    id = 'hero-section',
+    id = SECTION_CONFIG.HERO,
     ...rest
 }: ComponentProps<'section'>) {
     return (
@@ -119,7 +115,6 @@ export function HeroSectionView({
                     width={90}
                     height={90}
                     alt={'Кольца'}
-                    aria-label={'Кольца'}
                     src={'/hero/rings.webp'}
                 />
                 <Typography variant={'h5'} style={{fontWeight: 300, textAlign: 'center'}}>

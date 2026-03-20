@@ -19,6 +19,7 @@ import {Checkbox} from "@/shared/components/ui/checkbox";
 import {Plus, Trash} from "lucide-react";
 import {ICON_SIZE} from "@/shared/constants/styles.constants";
 import {alcoholQueries} from "@/features/invitation/queries/alcohol.queries";
+import {SECTION_CONFIG} from "@/shared/configs/pages/section.config";
 
 
 type FormData = {
@@ -29,7 +30,7 @@ type FormData = {
 
 export function InvitationSectionView({
     className,
-    id = 'invitation-section',
+    id = SECTION_CONFIG.INVITATION,
     ...rest
 }: ComponentProps<'section'>) {
 
@@ -95,7 +96,6 @@ export function InvitationSectionView({
                 width={420}
                 height={80}
                 alt={'Анкета'}
-                aria-label={'Анкета'}
                 src={'/invitation/heading.webp'}
                 className={`self-end`}
             />

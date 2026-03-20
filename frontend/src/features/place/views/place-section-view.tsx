@@ -2,11 +2,12 @@ import type {ComponentProps} from "react";
 import {twMerge} from "tailwind-merge";
 import Image from "next/image";
 import {Typography} from "@/shared/components/ui/typography";
+import {SECTION_CONFIG} from "@/shared/configs/pages/section.config";
 
 
 export function PlaceSectionView({
     className,
-    id = 'place-section',
+    id = SECTION_CONFIG.PLACE,
     ...rest
 }: ComponentProps<'section'>) {
     return (
@@ -15,7 +16,6 @@ export function PlaceSectionView({
                 width={680}
                 height={200}
                 alt={'Место проведения'}
-                aria-label={'Место проведения'}
                 src={'/place/heading.webp'}
                 className={`self-end`}
             />
