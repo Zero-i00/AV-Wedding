@@ -1,2 +1,2 @@
 export { InvitationSectionView } from './views/invitation-section-view'
-export { alcoholQueries } from './queries/alcohol.queries'
+export { alcoholService } from './services/alcohol.service'

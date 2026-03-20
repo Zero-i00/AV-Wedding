@@ -6,12 +6,7 @@ import {Typography} from "@/shared/components/ui/typography";
 import Image from "next/image";
 import {SECTION_CONFIG} from "@/shared/configs/pages/section.config";
 import {m, useReducedMotion} from "framer-motion";
-import {
-    BASE_TRANSITION,
-    fadeUp,
-    heroStaggerContainer,
-    scaleReveal,
-} from "@/shared/constants/animation.constants";
+import {BASE_TRANSITION, fadeUp, heroStaggerContainer, scaleReveal,} from "@/shared/constants/animation.constants";
 
 
 const VARVARA_LINE_PATH = "M1097 92.9266C906.67 71.4517 687.076 147.514 657.121 116.611C619.675 77.9824 709.671 -39.9098 730.188 15.8004C748.778 66.2743 613.694 103.09 549.453 92.9259C456.888 78.2809 425.131 -4.25839 302.704 15.8028C180.279 35.8641 137.35 104.95 0.00390625 104.394"
@@ -122,7 +117,7 @@ export function HeroSectionView({
         <section id={id} className={twMerge(`container-section h-dvh flex flex-col justify-center`, className)} {...rest}>
             <VarvaraLine className={`justify-start`} />
             <m.div
-                className={`flex flex-col justify-center items-center gap-12`}
+                className={`flex flex-col justify-center items-center gap-12 mb-18`}
                 variants={heroStaggerContainer}
                 initial={shouldReduceMotion ? 'visible' : 'hidden'}
                 animate="visible"

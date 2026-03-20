@@ -1,21 +1,30 @@
 import {HeroSectionView} from "@/features/hero";
-import {InvitationSectionView, alcoholQueries} from "@/features/invitation";
-import {dehydrate, HydrationBoundary, QueryClient} from "@tanstack/react-query";
+import {InvitationSectionView} from "@/features/invitation";
+import {alcoholService} from "@/features/invitation/services/alcohol.service";
 import {PlaceSectionView} from "@/features/place";
 import {HopeSectionView} from "@/features/hope";
 import {PlanSectionView} from "@/features/plan";
+import {MenuSectionView} from "@/features/menu";
 
-export default async function Home() {
-    const queryClient = new QueryClient()
-    await queryClient.prefetchQuery(alcoholQueries.list())
+export default async function Home({
+    searchParams,
+}: {
+    searchParams: Promise<{ guests?: string }>
+}) {
+    const alcohols = await alcoholService.list().catch(() => [])
+    const { guests: guestsParam } = await searchParams
+    const guests = guestsParam
+        ? guestsParam.split(',').map(g => g.trim()).filter(Boolean).slice(0, 3)
+        : undefined
 
     return (
-        <HydrationBoundary state={dehydrate(queryClient)}>
+        <>
             <HeroSectionView />
-            <PlanSectionView />
+            <MenuSectionView guests={guests} />
             <PlaceSectionView />
-            <InvitationSectionView />
+            <PlanSectionView />
+            <InvitationSectionView alcohols={alcohols} />
             <HopeSectionView />
-        </HydrationBoundary>
+        </>
     );
 }
