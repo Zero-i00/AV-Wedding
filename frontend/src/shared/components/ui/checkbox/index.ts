@@ -1,2 +1,2 @@
-export {Checkbox} from './component'
-export type {CheckboxProps} from './component.props'
+export {Checkbox} from './checkbox'
+export type {CheckboxProps} from './checkbox.props'

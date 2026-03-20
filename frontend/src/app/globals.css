@@ -6,9 +6,18 @@
 }
 
 body {
+  margin: 0;
+  min-width: 320px;
   overflow-x: hidden;
   background: var(--color-white);
   font-family: var(--font-montserrat), sans-serif;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @keyframes draw-line {

@@ -1,2 +1,2 @@
-export {Radio} from './component'
-export type {RadioProps} from './component.props'
+export {Radio} from './radio'
+export type {RadioProps} from './radio.props'

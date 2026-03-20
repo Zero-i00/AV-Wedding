@@ -1,2 +1,2 @@
-export {Loader} from './component'
-export type {LoaderProps} from './component.props'
+export {Loader} from './loader'
+export type {LoaderProps} from './loader.props'

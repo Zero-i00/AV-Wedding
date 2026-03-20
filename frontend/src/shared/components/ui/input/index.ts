@@ -1,2 +1,2 @@
-export {Input} from './component'
-export type {InputElement, InputProps} from './component.props'
+export {Input} from './input'
+export type {InputElement, InputProps} from './input.props'

@@ -1,1 +1,0 @@
-export {HopeSection} from './section'

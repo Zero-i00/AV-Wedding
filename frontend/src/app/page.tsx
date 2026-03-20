@@ -1,9 +1,9 @@
-import {HeroSection} from "@/features/core/components/sections/hero";
-import {InvitationSection} from "@/features/core/components/sections/invitation";
+import {HeroSectionView} from "@/features/hero";
+import {InvitationSectionView, alcoholQueries} from "@/features/invitation";
 import {dehydrate, HydrationBoundary, QueryClient} from "@tanstack/react-query";
-import {alcoholQueries} from "@/features/core/queries/alcohol.queries";
-import {PlaceSection} from "@/features/core/components/sections/place";
-import {HopeSection} from "@/features/core/components/sections/hope";
+import {PlaceSectionView} from "@/features/place";
+import {HopeSectionView} from "@/features/hope";
+import {PlanSectionView} from "@/features/plan";
 
 export default async function Home() {
     const queryClient = new QueryClient()
@@ -11,10 +11,11 @@ export default async function Home() {
 
     return (
         <HydrationBoundary state={dehydrate(queryClient)}>
-            <HeroSection />
-            <PlaceSection />
-            <InvitationSection />
-            <HopeSection />
+            <HeroSectionView />
+            <PlanSectionView />
+            <PlaceSectionView />
+            <InvitationSectionView />
+            <HopeSectionView />
         </HydrationBoundary>
     );
 }

@@ -1,4 +1,5 @@
-import {AxiosError, AxiosRequestHeaders} from "axios";
+import {AxiosError} from "axios";
+import type {AxiosRequestHeaders} from "axios";
 
 export const APP_API_HEADERS: Partial<AxiosRequestHeaders> = {
     'Content-Type': 'application/json',

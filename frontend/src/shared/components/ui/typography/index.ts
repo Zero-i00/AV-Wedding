@@ -1,2 +1,2 @@
-export {Typography} from './component'
-export type {TypographyVariant, TypographyProps} from './component.props'
+export {Typography} from './typography'
+export type {TypographyVariant, TypographyProps} from './typography.props'
